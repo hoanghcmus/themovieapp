@@ -1,0 +1,13 @@
+enum ScreenNames {
+  NONE = 'NONE',
+  ROOT_STACK = 'ROOT_STACK',
+
+  HOME_STACK = 'HOME_STACK',
+  HOME_TABS = 'HOME_TABS',
+  HOME_SCREEN = 'HOME_SCREEN',
+
+  DETAIL_SCREEN = 'DETAIL_SCREEN',
+  WATCHLIST_SCREEN = 'WATCHLIST_SCREEN',
+}
+
+export default ScreenNames;

@@ -9,31 +9,45 @@
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-MovieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MovieApp.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		352C194BF1E64F09A415A139 /* source-sans-pro.extralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90376B67D5E740A6BB9B1804 /* source-sans-pro.extralight.ttf */; };
+		3879CD55AF9739D2628E56E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		538952C8E32B4BB49070E3EB /* source-sans-pro.black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A15FDEFE72041A7A95C15D3 /* source-sans-pro.black.ttf */; };
+		58F98CED4FBB4332AA42D74D /* source-sans-pro.italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36093D45A21643E797FFA234 /* source-sans-pro.italic.ttf */; };
+		5E5C9939BEE34CB5AAAD89C7 /* source-sans-pro.semibold-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85E2149F4A9F4F00AD180A0D /* source-sans-pro.semibold-italic.ttf */; };
+		6D734133CC2A4C88B9774404 /* source-sans-pro.bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA363009BAE44B0194C7C1DE /* source-sans-pro.bold.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8CB28035EBB94035869328D7 /* source-sans-pro.light-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4A784B8FAFD40F8A1DC2B24 /* source-sans-pro.light-italic.ttf */; };
+		92ECCD13E7A7416289DB5F39 /* source-sans-pro.bold-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3738A0AD196F46B49D682F51 /* source-sans-pro.bold-italic.ttf */; };
+		9E5F9255138748D9B4E7EF40 /* source-sans-pro.black-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A4982F2BDDC4D9DAEA64F27 /* source-sans-pro.black-italic.ttf */; };
+		C9A0BAC82B1C48C68A07F502 /* source-sans-pro.extralight-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02E480D8D23143F197F9B123 /* source-sans-pro.extralight-italic.ttf */; };
+		CE428E2D90174E078ACCB5E6 /* source-sans-pro.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 704B42E9F6B446828A4AEB9A /* source-sans-pro.regular.ttf */; };
+		E03A9FC561C045E6B090C979 /* source-sans-pro.semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18BDBDA8C3EC4A3FB0133867 /* source-sans-pro.semibold.ttf */; };
+		EFCD11099076468FB962ADB7 /* source-sans-pro.light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 792E6136CB1F438E80EE6DF8 /* source-sans-pro.light.ttf */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = MovieApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02E480D8D23143F197F9B123 /* source-sans-pro.extralight-italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.extralight-italic.ttf"; path = "../assets/fonts/source-sans-pro.extralight-italic.ttf"; sourceTree = "<group>"; };
+		0A15FDEFE72041A7A95C15D3 /* source-sans-pro.black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.black.ttf"; path = "../assets/fonts/source-sans-pro.black.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MovieApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MovieApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = MovieApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		18BDBDA8C3EC4A3FB0133867 /* source-sans-pro.semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.semibold.ttf"; path = "../assets/fonts/source-sans-pro.semibold.ttf"; sourceTree = "<group>"; };
+		36093D45A21643E797FFA234 /* source-sans-pro.italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.italic.ttf"; path = "../assets/fonts/source-sans-pro.italic.ttf"; sourceTree = "<group>"; };
+		3738A0AD196F46B49D682F51 /* source-sans-pro.bold-italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.bold-italic.ttf"; path = "../assets/fonts/source-sans-pro.bold-italic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-MovieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MovieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		704B42E9F6B446828A4AEB9A /* source-sans-pro.regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.regular.ttf"; path = "../assets/fonts/source-sans-pro.regular.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MovieApp/AppDelegate.swift; sourceTree = "<group>"; };
+		792E6136CB1F438E80EE6DF8 /* source-sans-pro.light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.light.ttf"; path = "../assets/fonts/source-sans-pro.light.ttf"; sourceTree = "<group>"; };
+		7A4982F2BDDC4D9DAEA64F27 /* source-sans-pro.black-italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.black-italic.ttf"; path = "../assets/fonts/source-sans-pro.black-italic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MovieApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		85E2149F4A9F4F00AD180A0D /* source-sans-pro.semibold-italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.semibold-italic.ttf"; path = "../assets/fonts/source-sans-pro.semibold-italic.ttf"; sourceTree = "<group>"; };
+		90376B67D5E740A6BB9B1804 /* source-sans-pro.extralight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.extralight.ttf"; path = "../assets/fonts/source-sans-pro.extralight.ttf"; sourceTree = "<group>"; };
+		DA363009BAE44B0194C7C1DE /* source-sans-pro.bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.bold.ttf"; path = "../assets/fonts/source-sans-pro.bold.ttf"; sourceTree = "<group>"; };
+		E4A784B8FAFD40F8A1DC2B24 /* source-sans-pro.light-italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "source-sans-pro.light-italic.ttf"; path = "../assets/fonts/source-sans-pro.light-italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -49,14 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +84,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		48877BB7A6E643FD936E5003 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7A4982F2BDDC4D9DAEA64F27 /* source-sans-pro.black-italic.ttf */,
+				0A15FDEFE72041A7A95C15D3 /* source-sans-pro.black.ttf */,
+				3738A0AD196F46B49D682F51 /* source-sans-pro.bold-italic.ttf */,
+				DA363009BAE44B0194C7C1DE /* source-sans-pro.bold.ttf */,
+				02E480D8D23143F197F9B123 /* source-sans-pro.extralight-italic.ttf */,
+				90376B67D5E740A6BB9B1804 /* source-sans-pro.extralight.ttf */,
+				36093D45A21643E797FFA234 /* source-sans-pro.italic.ttf */,
+				E4A784B8FAFD40F8A1DC2B24 /* source-sans-pro.light-italic.ttf */,
+				792E6136CB1F438E80EE6DF8 /* source-sans-pro.light.ttf */,
+				704B42E9F6B446828A4AEB9A /* source-sans-pro.regular.ttf */,
+				85E2149F4A9F4F00AD180A0D /* source-sans-pro.semibold-italic.ttf */,
+				18BDBDA8C3EC4A3FB0133867 /* source-sans-pro.semibold.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +119,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				48877BB7A6E643FD936E5003 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -172,19 +199,25 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				3879CD55AF9739D2628E56E3 /* PrivacyInfo.xcprivacy in Resources */,
+				9E5F9255138748D9B4E7EF40 /* source-sans-pro.black-italic.ttf in Resources */,
+				538952C8E32B4BB49070E3EB /* source-sans-pro.black.ttf in Resources */,
+				92ECCD13E7A7416289DB5F39 /* source-sans-pro.bold-italic.ttf in Resources */,
+				6D734133CC2A4C88B9774404 /* source-sans-pro.bold.ttf in Resources */,
+				C9A0BAC82B1C48C68A07F502 /* source-sans-pro.extralight-italic.ttf in Resources */,
+				352C194BF1E64F09A415A139 /* source-sans-pro.extralight.ttf in Resources */,
+				58F98CED4FBB4332AA42D74D /* source-sans-pro.italic.ttf in Resources */,
+				8CB28035EBB94035869328D7 /* source-sans-pro.light-italic.ttf in Resources */,
+				EFCD11099076468FB962ADB7 /* source-sans-pro.light.ttf in Resources */,
+				CE428E2D90174E078ACCB5E6 /* source-sans-pro.regular.ttf in Resources */,
+				5E5C9939BEE34CB5AAAD89C7 /* source-sans-pro.semibold-italic.ttf in Resources */,
+				E03A9FC561C045E6B090C979 /* source-sans-pro.semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,14 +309,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* MovieApp */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -305,7 +330,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aquariux.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MovieApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -332,7 +357,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aquariux.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MovieApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -408,7 +433,14 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -473,7 +505,13 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
