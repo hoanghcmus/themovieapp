@@ -54,7 +54,7 @@ const DetailsScreen: React.FC = ({route}: any) => {
   const fetchMovieDetail = async (_movieId: string) => {
     try {
       setError(null);
-
+      router.showLoading();
       const response = await MovieApis.getMovieDetail({
         movieId: _movieId,
       });
@@ -67,6 +67,7 @@ const DetailsScreen: React.FC = ({route}: any) => {
       } else {
         setError('No movie found');
       }
+      router.hideLoading();
     } catch (err) {
       setError('Failed to fetch movie. Please try again.');
     }
