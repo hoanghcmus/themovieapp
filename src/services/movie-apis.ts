@@ -78,6 +78,16 @@ class CommonApi extends API {
       }&page=${data.page ?? 1}`,
     });
   };
+
+  /*
+   * https://api.themoviedb.org/3/account/
+   * GET /account/
+   */
+  getAccountDetail = () => {
+    return this.get({
+      route: '/account',
+    });
+  };
 }
 
 export default new CommonApi();

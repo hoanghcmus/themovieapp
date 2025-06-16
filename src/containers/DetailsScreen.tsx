@@ -75,9 +75,10 @@ const DetailsScreen: React.FC = ({route}: any) => {
       } else {
         setError('No movie found');
       }
-      router.hideLoading();
     } catch (err) {
-      setError('Failed to fetch movie. Please try again.');
+      setError('Failed to fetch movie. Please try again later');
+    } finally {
+      router.hideLoading();
     }
   };
 

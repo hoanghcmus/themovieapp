@@ -3,11 +3,13 @@ import {StyleSheet, TouchableOpacity, View, ViewStyle} from 'react-native';
 import IconBack from '../assets/svg/ic-back.svg';
 import router from '../configs/router';
 import AquaText from './AquaText';
+import {isFunction} from 'lodash';
 
 interface HeaderBackBarProps {
   forwardedRef?: React.Ref<HeaderBackBarRef> | null;
   title?: string;
   style?: ViewStyle | any;
+  onBackPress?: Function;
 }
 
 export type HeaderBackBarRef = {
@@ -17,11 +19,15 @@ export type HeaderBackBarRef = {
 };
 
 const HeaderBackBar = (props: HeaderBackBarProps) => {
-  const {style, title} = props;
+  const {style, title, onBackPress} = props;
   return (
     <View style={[styles.container, style]}>
       <TouchableOpacity
         onPress={() => {
+          if (onBackPress && isFunction(onBackPress)) {
+            onBackPress();
+            return;
+          }
           router.back();
         }}
         style={styles.iconButton}>
