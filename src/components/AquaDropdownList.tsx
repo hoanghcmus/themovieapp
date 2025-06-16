@@ -7,6 +7,7 @@ import IconChevronDown from '../assets/svg/ic-chevron-down.svg';
 type AquaDropdownListProps = {
   data: Array<{label: string; value: string}>;
   style?: ViewStyle;
+  dropdownStyle?: ViewStyle;
   value?: string;
   onSelectItem: (item: {label: string; value: string}) => void;
   placeholder?: string;
@@ -17,6 +18,7 @@ const AquaDropdownList = (props: AquaDropdownListProps) => {
   const {
     data = [],
     style = {},
+    dropdownStyle = {},
     placeholder = 'Select item',
     searchPlaceholder = 'Search...',
     value,
@@ -28,7 +30,7 @@ const AquaDropdownList = (props: AquaDropdownListProps) => {
     <View style={[styles.container, style]}>
       <Dropdown
         itemTextStyle={styles.itemTextStyle}
-        style={[styles.dropdown]}
+        style={[styles.dropdown, dropdownStyle]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         containerStyle={styles.dropdownContainer}

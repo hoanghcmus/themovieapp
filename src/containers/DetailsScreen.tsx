@@ -219,6 +219,8 @@ const DetailsScreen: React.FC = ({route}: any) => {
                   release_date: item.release_date,
                   overview: item.overview,
                   poster_path: item.poster_path,
+                  vote_average: item.vote_average,
+                  vote_count: item.vote_count,
                 });
               }}>
               <IconWatchList width={12} height={16} />
