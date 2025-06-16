@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, SectionList, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, SectionList, StyleSheet} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import router from '../configs/router';
 import Container from './Container';
@@ -11,8 +11,6 @@ import MovieApis from '../services/movie-apis';
 import {Movie, MovieCategory, SortBy} from '../data-types/aqua';
 import {navBarHeight} from '../components/BottomNavBar';
 import ScreenNames from '../constants/screenNames';
-import {TMDB_IMAGE_BASE_URL} from '../configs/config';
-import AquaImage from '../components/AquaImage';
 import AquaText from '../components/AquaText';
 import {useDispatch} from 'react-redux';
 import {
@@ -20,6 +18,7 @@ import {
   setSelectedSortBy as storeSelectedSortBy,
 } from '../state/actions/app';
 import {useSelectedCategory, useSelectedSortBy} from '../state/hooks/app';
+import MovieItem from '../components/MovieItem';
 
 type SectionData = {
   title: string;
@@ -127,24 +126,12 @@ const HomeScreen = () => {
   };
 
   const renderMovie = ({item}: {item: Movie}) => (
-    <TouchableOpacity
-      style={styles.movieItem}
-      onPress={() =>
-        router.push(ScreenNames.DETAIL_SCREEN, {movieId: item.id})
-      }>
-      <AquaImage
-        source={{uri: `${TMDB_IMAGE_BASE_URL}${item.poster_path}`}}
-        style={styles.poster}
-        resizeMode="cover"
-      />
-      <View style={styles.movieDetails}>
-        <AquaText style={styles.title}>{item.title}</AquaText>
-        <AquaText style={styles.releaseDate}>{item.release_date}</AquaText>
-        <AquaText numberOfLines={2} style={styles.overview}>
-          {item.overview}
-        </AquaText>
-      </View>
-    </TouchableOpacity>
+    <MovieItem
+      movie={item}
+      onMoviePress={(movie: Movie) => {
+        router.push(ScreenNames.DETAIL_SCREEN, {movieId: movie.id});
+      }}
+    />
   );
 
   const renderFilters = () => (
@@ -214,28 +201,6 @@ const styles = StyleSheet.create({
   container: {flex: 1, paddingHorizontal: 16, paddingBottom: navBarHeight + 20},
   sectionList: {flex: 1},
   searchInput: {marginBottom: 16},
-  movieItem: {
-    flexDirection: 'row',
-    marginVertical: 8,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-  },
-  poster: {
-    width: 96,
-    height: 148,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
-  },
-  movieDetails: {flex: 1, marginHorizontal: 12, justifyContent: 'center'},
-  title: {fontSize: 16, fontWeight: 'bold'},
-  releaseDate: {fontSize: 14, color: '#999999', marginBottom: 16},
-  overview: {fontSize: 14, marginTop: 4},
   error: {color: 'red', textAlign: 'center', marginVertical: 16},
   loadMoreButton: {
     marginVertical: 16,
