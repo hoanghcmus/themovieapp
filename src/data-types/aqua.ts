@@ -22,12 +22,6 @@ export enum SortBy {
   RELEASE_DATE = 'release_date',
 }
 
-export interface Recommendation {
-  title: string;
-  rating: string;
-  image: string;
-}
-
 export interface Genre {
   id: number;
   name: string;

@@ -57,7 +57,25 @@ class CommonApi extends API {
    */
   getMovieDetailCredits = (data: {movieId: string; language?: string}) => {
     return this.get({
-      route: `movie/${data.movieId}/credits?language=${data.language}`,
+      route: `movie/${data.movieId}/credits?language=${
+        data.language ?? 'en-US'
+      }`,
+    });
+  };
+
+  /*
+   * https://api.themoviedb.org/3/movie/1376434/recommendations?language=en-US
+   * GET /movie/${movieId}/recommendations?language=${lang}&page=${page}
+   */
+  getMovieDetailRecomendations = (data: {
+    movieId: string;
+    language?: string;
+    page?: number;
+  }) => {
+    return this.get({
+      route: `movie/${data.movieId}/recommendations?language=${
+        data.language ?? 'en-US'
+      }&page=${data.page ?? 1}`,
     });
   };
 }

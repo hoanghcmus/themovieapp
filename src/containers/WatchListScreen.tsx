@@ -2,12 +2,14 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Container from './Container';
 import AquaText from '../components/AquaText';
+import {useWatchList} from '../state/hooks/app';
 
 const WatchListScreen: React.FC = () => {
+  const watchlist = useWatchList();
   return (
     <Container style={styles.container}>
       <View style={styles.wrapper}>
-        <AquaText style={styles.text}>TO BE CONTINUED</AquaText>
+        <AquaText style={styles.text}>{JSON.stringify(watchlist)}</AquaText>
       </View>
     </Container>
   );

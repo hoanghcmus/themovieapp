@@ -14,7 +14,6 @@ import router from '../configs/router';
 import AquaImage from '../components/AquaImage';
 import AquaText from '../components/AquaText';
 import MovieApis from '../services/movie-apis';
-import log from '../utils/log';
 import {CastMember, Movie, MovieDetails} from '../data-types/aqua';
 import {TMDB_IMAGE_BASE_URL} from '../configs/config';
 import HeaderBackBar from '../components/HeaderBackBar';
@@ -43,8 +42,10 @@ const DetailsScreen: React.FC = ({route}: any) => {
   const [sectionData, setSectionData] = useState<SectionData[]>([
     {title: DETAIL_SECTION, data: []},
     {title: TOP_BILLED_CAST_SECTION, data: []},
+    {title: RECOMMENDATIONS_SECTION, data: []},
   ]);
   const [cast, setCast] = useState<CastMember[]>([]);
+  const [recommendations, setRecommendations] = useState<MovieDetails[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useFocusEffect(
@@ -56,6 +57,7 @@ const DetailsScreen: React.FC = ({route}: any) => {
   useEffect(() => {
     fetchMovieDetail(movieId);
     fetchMovieDetailCredits(movieId);
+    fetchMovieDetailRecommendations(movieId);
   }, [movieId]);
 
   const fetchMovieDetail = async (_movieId: string) => {
@@ -70,7 +72,6 @@ const DetailsScreen: React.FC = ({route}: any) => {
         const newSectionData = [...sectionData];
         newSectionData[0].data = [movie];
         setSectionData(newSectionData);
-        log.i(movie, 'MOVIE');
       } else {
         setError('No movie found');
       }
@@ -85,7 +86,6 @@ const DetailsScreen: React.FC = ({route}: any) => {
       const response = await MovieApis.getMovieDetailCredits({
         movieId: _movieId,
       });
-      log.i(response, 'fetchMovieDetailCredits');
 
       if (response?.status < 300 && response?.data) {
         const _cast = response.data.cast ?? [];
@@ -102,50 +102,25 @@ const DetailsScreen: React.FC = ({route}: any) => {
     }
   };
 
-  const renderItem = ({item, section}: {item: any; section: SectionData}) => {
-    if (section.title === DETAIL_SECTION) {
-      return renderMovieDetailsSection({item});
-    } else if (section.title === TOP_BILLED_CAST_SECTION) {
-      return renderCastSection(cast);
-    } else if (section.title === RECOMMENDATIONS_SECTION) {
-      // TODO: Implement RECOMMENDATIONS section
-      return null;
+  const fetchMovieDetailRecommendations = async (_movieId: string) => {
+    try {
+      const response = await MovieApis.getMovieDetailRecomendations({
+        movieId: _movieId,
+      });
+
+      if (response?.status < 300 && response?.data) {
+        const _recommendations = response.data.results ?? [];
+
+        setRecommendations(_recommendations);
+        const newSectionData = [...sectionData];
+        newSectionData[2].data = [_recommendations];
+        setSectionData(newSectionData);
+      } else {
+        setError('No movie recommendations found');
+      }
+    } catch (err) {
+      setError('Failed to fetch movie recommendations. Please try again.');
     }
-    return null;
-  };
-
-  const renderCastItem = (item: CastMember) => {
-    return (
-      <View style={styles.castItemWrapper}>
-        <AquaImage
-          source={{uri: TMDB_IMAGE_BASE_URL + item.profile_path}}
-          style={styles.castItemImage}
-        />
-        <AquaText style={styles.castItemPersonName}>{item.name}</AquaText>
-        <AquaText style={styles.castItemPersonImage} numberOfLines={2}>
-          {item.character}
-        </AquaText>
-      </View>
-    );
-  };
-
-  const renderCastSection = (_cast: CastMember[]) => {
-    return (
-      <>
-        <AquaText style={styles.castSectionTitle}>
-          {TOP_BILLED_CAST_SECTION}
-        </AquaText>
-        <FlatList
-          style={styles.castList}
-          contentContainerStyle={[]}
-          data={_cast}
-          keyExtractor={item => item.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={true}
-          renderItem={({item}) => renderCastItem(item)}
-        />
-      </>
-    );
   };
 
   const addToWatchList = (movie: Movie) => {
@@ -210,7 +185,10 @@ const DetailsScreen: React.FC = ({route}: any) => {
                   backgroundColor="#3d5875"
                 />
                 <AquaText style={styles.ratingCircle}>
-                  {item.vote_average}
+                  {Math.round(item.vote_average * 10)}
+                  <View>
+                    <AquaText style={styles.percentage}>%</AquaText>
+                  </View>
                 </AquaText>
               </View>
               <AquaText style={styles.userScoreText}>User Score</AquaText>
@@ -249,6 +227,94 @@ const DetailsScreen: React.FC = ({route}: any) => {
         </View>
       </View>
     );
+  };
+
+  const renderCastItem = (item: CastMember) => {
+    return (
+      <View style={styles.castItemWrapper}>
+        <AquaImage
+          source={{uri: TMDB_IMAGE_BASE_URL + item.profile_path}}
+          style={styles.castItemImage}
+        />
+        <AquaText style={styles.castItemPersonName}>{item.name}</AquaText>
+        <AquaText style={styles.castItemPersonImage} numberOfLines={2}>
+          {item.character}
+        </AquaText>
+      </View>
+    );
+  };
+
+  const renderCastSection = (_cast: CastMember[]) => {
+    return (
+      <>
+        <AquaText style={styles.castSectionTitle}>
+          {TOP_BILLED_CAST_SECTION}
+        </AquaText>
+        <FlatList
+          style={styles.castList}
+          contentContainerStyle={[]}
+          data={_cast}
+          keyExtractor={item => item.id.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={true}
+          renderItem={({item}) => renderCastItem(item)}
+        />
+      </>
+    );
+  };
+
+  const renderRecommendationItem = (item: MovieDetails) => {
+    return (
+      <View style={styles.recommendationItemWrapper}>
+        <AquaImage
+          source={{uri: TMDB_IMAGE_BASE_URL + item.poster_path}}
+          style={styles.recommendationItemImage}
+        />
+        <View style={styles.recommendationItemContentWrapper}>
+          <AquaText style={styles.recommendationItemName} numberOfLines={1}>
+            {item.title}
+          </AquaText>
+          <AquaText
+            style={styles.recommendationItemPercentage}
+            numberOfLines={2}>
+            {Math.round(item.vote_average * 10)}%
+          </AquaText>
+        </View>
+      </View>
+    );
+  };
+
+  const renderRecommendationsSection = (
+    _recommendations: Array<MovieDetails>,
+  ) => {
+    return (
+      <>
+        <View style={styles.recommendationDivider} />
+        <AquaText style={styles.castSectionTitle}>
+          {RECOMMENDATIONS_SECTION}
+        </AquaText>
+        <FlatList
+          style={styles.castList}
+          contentContainerStyle={[]}
+          data={_recommendations}
+          keyExtractor={item => item.id.toString()}
+          horizontal={true}
+          showsHorizontalScrollIndicator={true}
+          renderItem={({item}) => renderRecommendationItem(item)}
+        />
+      </>
+    );
+  };
+
+  const renderItem = ({item, section}: {item: any; section: SectionData}) => {
+    if (section.title === DETAIL_SECTION) {
+      return renderMovieDetailsSection({item});
+    } else if (section.title === TOP_BILLED_CAST_SECTION) {
+      return renderCastSection(cast);
+    } else if (section.title === RECOMMENDATIONS_SECTION) {
+      return renderRecommendationsSection(recommendations);
+    }
+    return null;
   };
 
   return (
@@ -313,6 +379,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 700,
+    marginLeft: 8,
+  },
+  percentage: {
+    fontSize: 8,
+    fontWeight: '700',
+    marginBottom: 4,
+    color: '#FFF',
+    marginLeft: 2,
   },
   tagline: {
     color: '#FFF',
@@ -438,6 +512,44 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   castSectionTitle: {
+    fontSize: 22,
+    fontWeight: 600,
+    marginHorizontal: 16,
+    marginVertical: 10,
+  },
+
+  recommendationDivider: {
+    borderWidth: 2,
+    borderColor: '#E4E4E4',
+    width: '100%',
+    marginTop: 16,
+    marginBottom: 10,
+  },
+  recommendationItemWrapper: {
+    marginRight: 20,
+    width: 286,
+  },
+  recommendationItemImage: {
+    width: 286,
+    height: 162,
+    borderRadius: 5,
+  },
+  recommendationItemContentWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 6,
+  },
+  recommendationItemName: {
+    fontSize: 18,
+    marginHorizontal: 12,
+    flex: 1,
+  },
+  recommendationItemPercentage: {
+    fontSize: 16,
+    fontWeight: 400,
+    textAlign: 'right',
+  },
+  recommendationSectionTitle: {
     fontSize: 22,
     fontWeight: 600,
     marginHorizontal: 16,
