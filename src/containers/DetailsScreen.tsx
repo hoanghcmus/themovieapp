@@ -44,8 +44,7 @@ const DetailsScreen: React.FC = ({route}: any) => {
     {title: TOP_BILLED_CAST_SECTION, data: []},
     {title: RECOMMENDATIONS_SECTION, data: []},
   ]);
-  const [cast, setCast] = useState<CastMember[]>([]);
-  const [recommendations, setRecommendations] = useState<MovieDetails[]>([]);
+
   const [error, setError] = useState<string | null>(null);
 
   useFocusEffect(
@@ -90,8 +89,6 @@ const DetailsScreen: React.FC = ({route}: any) => {
 
       if (response?.status < 300 && response?.data) {
         const _cast = response.data.cast ?? [];
-
-        setCast(_cast);
         const newSectionData = [...sectionData];
         newSectionData[1].data = [_cast];
         setSectionData(newSectionData);
@@ -111,8 +108,6 @@ const DetailsScreen: React.FC = ({route}: any) => {
 
       if (response?.status < 300 && response?.data) {
         const _recommendations = response.data.results ?? [];
-
-        setRecommendations(_recommendations);
         const newSectionData = [...sectionData];
         newSectionData[2].data = [_recommendations];
         setSectionData(newSectionData);
@@ -313,9 +308,9 @@ const DetailsScreen: React.FC = ({route}: any) => {
     if (section.title === DETAIL_SECTION) {
       return renderMovieDetailsSection({item});
     } else if (section.title === TOP_BILLED_CAST_SECTION) {
-      return renderCastSection(cast);
+      return renderCastSection(item);
     } else if (section.title === RECOMMENDATIONS_SECTION) {
-      return renderRecommendationsSection(recommendations);
+      return renderRecommendationsSection(item);
     }
     return null;
   };
