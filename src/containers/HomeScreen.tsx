@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, SectionList, TouchableOpacity, StyleSheet} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
@@ -149,7 +150,7 @@ const HomeScreen = () => {
   const renderFilters = () => (
     <View>
       <AquaDropdownList
-        style={{marginBottom: 16}}
+        style={styles.mb16}
         data={categoryDatasource}
         value={selectedCategory}
         onSelectItem={(item: {label: string; value: string}) => {
@@ -159,7 +160,7 @@ const HomeScreen = () => {
       />
 
       <AquaDropdownList
-        style={{marginBottom: 16}}
+        style={styles.mb16}
         placeholder="Sort by"
         data={sortByDatasource}
         value={selectedSortBy}
@@ -177,7 +178,7 @@ const HomeScreen = () => {
       />
 
       <AquaButton
-        style={{marginBottom: 16}}
+        style={styles.mb16}
         title="Search"
         onPress={() => handleSearch(1)}
       />
@@ -248,6 +249,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Source Sans Pro',
     fontWeight: 'bold',
   },
+  mb16: {marginBottom: 16},
 });
 
 export default HomeScreen;
