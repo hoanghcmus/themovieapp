@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useEffect, useState} from 'react';
 import {
+  Alert,
   FlatList,
   SectionList,
   StyleSheet,
@@ -14,13 +15,16 @@ import AquaImage from '../components/AquaImage';
 import AquaText from '../components/AquaText';
 import MovieApis from '../services/movie-apis';
 import log from '../utils/log';
-import {CastMember, MovieDetails} from '../data-types/aqua';
+import {CastMember, Movie, MovieDetails} from '../data-types/aqua';
 import {TMDB_IMAGE_BASE_URL} from '../configs/config';
 import HeaderBackBar from '../components/HeaderBackBar';
 import moment from 'moment';
 import {formatDuration} from '../utils/commonUtls';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import IconWatchList from '../assets/svg/ic-watchlist.svg';
+import {useDispatch} from 'react-redux';
+import {useWatchList} from '../state/hooks/app';
+import {setWatchList} from '../state/actions/app';
 
 const DETAIL_SECTION = 'Details';
 const TOP_BILLED_CAST_SECTION = 'Top Billed Cast';
@@ -32,6 +36,9 @@ type SectionData = {
 };
 const DetailsScreen: React.FC = ({route}: any) => {
   const {movieId} = route.params;
+
+  const dispatch = useDispatch();
+  const watchlist = useWatchList();
 
   const [sectionData, setSectionData] = useState<SectionData[]>([
     {title: DETAIL_SECTION, data: []},
@@ -141,6 +148,20 @@ const DetailsScreen: React.FC = ({route}: any) => {
     );
   };
 
+  const addToWatchList = (movie: Movie) => {
+    const isMovieExists = (id: number): boolean => {
+      return watchlist?.some((item: Movie) => item.id === id);
+    };
+    if (isMovieExists(movie.id)) {
+      Alert.alert('Movie is add to WatchList');
+      return;
+    }
+    const newWatchlist = [...(watchlist || [])];
+    newWatchlist.push(movie);
+    dispatch(setWatchList(newWatchlist));
+    Alert.alert('Movie is add to WatchList');
+  };
+
   const renderMovieDetailsSection = ({item}: {item: MovieDetails}) => {
     const genres = item.genres.map(genre => genre.name).join(', ');
     return (
@@ -210,7 +231,17 @@ const DetailsScreen: React.FC = ({route}: any) => {
           <AquaText style={styles.overviewText}>Overview</AquaText>
           <AquaText style={styles.overview}>{item.overview}</AquaText>
           <View style={styles.watchListButtonWrapper}>
-            <TouchableOpacity style={styles.watchlistButton}>
+            <TouchableOpacity
+              style={styles.watchlistButton}
+              onPress={() => {
+                addToWatchList({
+                  id: item.id,
+                  title: item.title,
+                  release_date: item.release_date,
+                  overview: item.overview,
+                  poster_path: item.poster_path,
+                });
+              }}>
               <IconWatchList width={12} height={16} />
               <AquaText style={styles.watchlistText}>Add To Watchlist</AquaText>
             </TouchableOpacity>
