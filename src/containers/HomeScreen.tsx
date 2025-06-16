@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, SectionList, StyleSheet} from 'react-native';
+import {SectionList, StyleSheet} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import router from '../configs/router';
 import Container from './Container';
@@ -135,7 +135,7 @@ const HomeScreen = () => {
   );
 
   const renderFilters = () => (
-    <View>
+    <>
       <AquaDropdownList
         style={styles.mb16}
         data={categoryDatasource}
@@ -169,7 +169,7 @@ const HomeScreen = () => {
         title="Search"
         onPress={() => handleSearch(1)}
       />
-    </View>
+    </>
   );
 
   const renderLoadMore = () => (
@@ -188,9 +188,21 @@ const HomeScreen = () => {
         style={styles.sectionList}
         sections={movies}
         renderItem={renderMovie}
+        renderSectionHeader={({section}) => {
+          if (section.data.length === 0) {
+            return (
+              <AquaText style={styles.movieListEmptyTitle}>
+                No Movies Found
+              </AquaText>
+            );
+          }
+          return null;
+        }}
         keyExtractor={item => item.id.toString()}
         ListHeaderComponent={renderFilters}
-        ListFooterComponent={renderLoadMore}
+        ListFooterComponent={
+          movies[0].data.length === 0 ? null : renderLoadMore
+        }
       />
       {error && <AquaText style={styles.error}>{error}</AquaText>}
     </Container>
@@ -215,6 +227,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   mb16: {marginBottom: 16},
+  movieListEmptyTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    marginVertical: 10,
+    marginHorizontal: 16,
+    alignSelf: 'center',
+    color: '#00B4E4',
+  },
 });
 
 export default HomeScreen;

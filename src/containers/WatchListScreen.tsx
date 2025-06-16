@@ -13,6 +13,8 @@ import MovieItem from '../components/MovieItem';
 import ScreenNames from '../constants/screenNames';
 import {Movie} from '../data-types/aqua';
 import {useFocusEffect} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {setWatchList} from '../state/actions/app';
 
 type SectionData = {
   title: string;
@@ -20,6 +22,7 @@ type SectionData = {
 };
 
 const WatchListScreen: React.FC = () => {
+  const dispatch = useDispatch();
   const watchlist = useWatchList();
   const [sectionData, setSectionData] = useState<SectionData[]>([
     {title: 'My Watchlist', data: watchlist || []},
@@ -99,6 +102,14 @@ const WatchListScreen: React.FC = () => {
     );
   };
 
+  const deleteWatchListItem = (movie: Movie) => {
+    let newWatchlist = [...(watchlist || [])];
+    newWatchlist = newWatchlist.filter((item: Movie) => {
+      return item.id !== movie.id;
+    });
+    dispatch(setWatchList(newWatchlist));
+  };
+
   const renderMovie = ({item}: {item: Movie}) => (
     <MovieItem
       style={styles.mh16}
@@ -106,6 +117,7 @@ const WatchListScreen: React.FC = () => {
       onMoviePress={(movie: Movie) => {
         router.push(ScreenNames.DETAIL_SCREEN, {movieId: movie.id});
       }}
+      onMovieDeletePress={(movie: Movie) => deleteWatchListItem(movie)}
     />
   );
 
@@ -117,6 +129,13 @@ const WatchListScreen: React.FC = () => {
         sections={sectionData}
         renderItem={renderMovie}
         renderSectionHeader={({section}) => {
+          if (watchlist.length === 0) {
+            return (
+              <AquaText style={styles.watchListEmptyTitle}>
+                No Item Added Yet
+              </AquaText>
+            );
+          }
           return (
             <AquaText style={styles.watchListTitle}>{section.title}</AquaText>
           );
@@ -172,6 +191,14 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginVertical: 10,
     marginHorizontal: 16,
+  },
+  watchListEmptyTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    marginVertical: 20,
+    marginHorizontal: 16,
+    alignSelf: 'center',
+    color: '#00B4E4',
   },
   mh16: {marginHorizontal: 16},
   mb60: {marginBottom: 60},

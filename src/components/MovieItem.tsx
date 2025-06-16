@@ -4,15 +4,23 @@ import AquaText from './AquaText';
 import AquaImage from './AquaImage';
 import {Movie} from '../data-types/aqua';
 import {TMDB_IMAGE_BASE_URL} from '../configs/config';
+import {isFunction} from 'lodash';
+import IconClose from '../assets/svg/ic-close.svg';
 
 type MovieItemProps = {
   style?: ViewStyle;
   movie: Movie;
   value?: string;
   onMoviePress?: (movie: Movie) => void;
+  onMovieDeletePress?: (movie: Movie) => void;
 };
 const MovieItem = (props: MovieItemProps) => {
-  const {style = {}, movie, onMoviePress = () => null} = props;
+  const {
+    style = {},
+    movie,
+    onMoviePress = () => null,
+    onMovieDeletePress,
+  } = props;
 
   return (
     <TouchableOpacity
@@ -32,6 +40,15 @@ const MovieItem = (props: MovieItemProps) => {
           {movie.overview}
         </AquaText>
       </View>
+      {onMovieDeletePress && isFunction(onMovieDeletePress) && (
+        <TouchableOpacity
+          style={styles.deleteIconWrapper}
+          onPress={() => {
+            onMovieDeletePress?.(movie);
+          }}>
+          <IconClose width={10} height={10} />
+        </TouchableOpacity>
+      )}
     </TouchableOpacity>
   );
 };
@@ -59,6 +76,15 @@ const styles = StyleSheet.create({
   title: {fontSize: 16, fontWeight: 'bold'},
   releaseDate: {fontSize: 14, color: '#999999', marginBottom: 16},
   overview: {fontSize: 14, marginTop: 4},
+  deleteIconWrapper: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default MovieItem;
