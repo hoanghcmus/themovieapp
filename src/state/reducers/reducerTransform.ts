@@ -4,10 +4,6 @@ import {
   IAppState,
   toPersist as toPersistApp,
 } from './app';
-import {
-  fromPersist as fromPersistUser,
-  toPersist as toPersistUser,
-} from './user';
 
 export const reducerTransform = createTransform(
   // To persist
@@ -15,8 +11,6 @@ export const reducerTransform = createTransform(
     switch (key) {
       case 'app':
         return toPersistApp(inState as IAppState);
-      case 'user':
-        return toPersistUser(inState);
       default:
         return inState;
     }
@@ -26,8 +20,6 @@ export const reducerTransform = createTransform(
     switch (key) {
       case 'app':
         return fromPersistApp(outState as IAppState);
-      case 'user':
-        return fromPersistUser(outState);
       default:
         return outState;
     }

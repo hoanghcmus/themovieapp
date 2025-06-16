@@ -15,3 +15,8 @@ export const selectSelectedSortBy = (state: any): any => {
   const app = selectApp(state);
   return app.selectedSortBy;
 };
+
+export const selectWatchList = (state: any): any => {
+  const app = selectApp(state);
+  return app.watchList;
+};
